@@ -1,6 +1,6 @@
 on: [push, pull_request]
 
-name: Build Lily58 Firmware with nRFMicro 1.3
+name: Build Lily58 Firmware with nRFMicro 1.1
 
 jobs:
   build:
@@ -48,7 +48,7 @@ jobs:
         uses: 'docker://zmkfirmware/zephyr-west-action-arm:latest'
         id: west-build-lily58-left
         with:
-          args: 'build "--pristine -s zmk/app -b nrfmicro_13 -- -DSHIELD=lily58_left -DZMK_CONFIG=/github/workspace/config"'
+          args: 'build "--pristine -s zmk/app -b nrfmicro_11 -- -DSHIELD=lily58_left -DZMK_CONFIG=/github/workspace/config"'
       - name: Lily58 Left Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Archive Liily58 Left .config
@@ -67,7 +67,7 @@ jobs:
         uses: 'docker://zmkfirmware/zephyr-west-action-arm:latest'
         id: west-build-lily58-right
         with:
-          args: 'build "--pristine -s zmk/app -b nrfmicro_13 -- -DSHIELD=lily58_right -DZMK_CONFIG=/github/workspace/config"'
+          args: 'build "--pristine -s zmk/app -b nrfmicro_11 -- -DSHIELD=lily58_right -DZMK_CONFIG=/github/workspace/config"'
       - name: Lily58 Right Kconfig file
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
       - name: Archive Lily58 Right .config
