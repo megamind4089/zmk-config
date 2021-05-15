@@ -53,6 +53,25 @@ jobs:
           name: lily58
           path: lily58_right_nrfmicro_13.uf2
 
+      - name: West Build (Lily58 Debug Left)
+        run: west build -s zmk/app -b nrfmicro_13 -- -DSHIELD=lily58_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_USB_LOGGING=y
+      - name: Rename image (Lily58 Debug Left)
+        run: cp build/zephyr/zmk.uf2 lily58_left_nrfmicro_13_debug.uf2
+      - name: Archive (Lily58 Debug Left)
+        uses: actions/upload-artifact@v2
+        with:
+          name: lily58
+          path: lily58_left_nrfmicro_13_debug.uf2
+      - name: West Build (Lily58 Debug Right)
+        run: west build -s zmk/app -b nrfmicro_13 -- -DSHIELD=lily58_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_USB_LOGGING=y
+      - name: Rename split (Lily58 Debug Right)
+        run: cp build/zephyr/zmk.uf2 lily58_right_nrfmicro_13_debug.uf2
+      - name: Archive (Lily58 Debug Right)
+        uses: actions/upload-artifact@v2
+        with:
+          name: lily58
+          path: lily58_right_nrfmicro_13_debug.uf2
+
       - name: West Build (Sofle Left)
         run: west build -s zmk/app -b nrfmicro_13 -- -DSHIELD=sofle_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Rename image (Sofle Left)
@@ -71,3 +90,22 @@ jobs:
         with:
           name: sofle
           path: sofle_right_nrfmicro_13.uf2
+
+      - name: West Build (Sofle Debug Left)
+        run: west build -s zmk/app -b nrfmicro_13 -- -DSHIELD=sofle_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_USB_LOGGING=y
+      - name: Rename image (Sofle Debug Left)
+        run: cp build/zephyr/zmk.uf2 sofle_left_nrfmicro_13_debug.uf2
+      - name: Archive (Sofle Debug Left)
+        uses: actions/upload-artifact@v2
+        with:
+          name: sofle
+          path: sofle_left_nrfmicro_13_debug.uf2
+      - name: West Build (Sofle Debug Right)
+        run: west build -s zmk/app -b nrfmicro_13 -- -DSHIELD=sofle_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_USB_LOGGING=y
+      - name: Rename split (Sofle Debug Right)
+        run: cp build/zephyr/zmk.uf2 sofle_right_nrfmicro_13_debug.uf2
+      - name: Archive (Sofle Debug Right)
+        uses: actions/upload-artifact@v2
+        with:
+          name: sofle
+          path: sofle_right_nrfmicro_13_debug.uf2
