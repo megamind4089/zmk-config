@@ -1,4 +1,4 @@
-name: Build ZMK Firmware with nRFMicro 1.3(4?)
+name: Build ZMK Firmware with nRFMicro 1.4
 on:
   - push
   - pull_request
@@ -12,13 +12,17 @@ jobs:
       matrix:
         include:
           - shield: lily58_left
-            board: nrfmicro_13
+            board: nrfmicro@1.4.0
           - shield: lily58_right
-            board: nrfmicro_13
+            board: nrfmicro@1.4.0
           - shield: sofle_left
-            board: nrfmicro_13
+            board: nrfmicro@1.4.0
           - shield: sofle_right
-            board: nrfmicro_13
+            board: nrfmicro@1.4.0
+          - shield: sofle_left
+            board: nrfmicro@1.4.1
+          - shield: sofle_right
+            board: nrfmicro@1.4.1
 
     steps:
       - name: Checkout
