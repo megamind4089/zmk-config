@@ -76,6 +76,9 @@ jobs:
       - name: Generated zephyr DTS file
         if: always()
         run: cat -n build/zephyr/zephyr.dts
+      - name: Generated config file
+        if: always()
+        run: cat -n build/zephyr/include/generated/autoconf.h
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
