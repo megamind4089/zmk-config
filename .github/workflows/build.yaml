@@ -23,6 +23,8 @@ jobs:
             board: nrfmicro@1.4.1
           - shield: sofle_right
             board: nrfmicro@1.4.1
+          - board: cyber60@B
+            keymap: config/boards/arm/cyber60/cyber60.keymap
 
     steps:
       - name: Checkout
@@ -46,6 +48,7 @@ jobs:
         timeout-minutes: 2
         continue-on-error: true
 
+
       - name: Initialize workspace (west init)
         run: west init -l config
       - name: Update modules (west update)
@@ -53,26 +56,34 @@ jobs:
       - name: Export Zephyr CMake package (west zephyr-export)
         run: west zephyr-export
 
+
       - name: Prepare variables
         id: variables
         run: |
+          SHIELD_ARG=
+          ARTIFACT_NAME="${{ matrix.board }}"
+
           if [ -n "${{ matrix.shield }}" ]; then
             SHIELD_ARG="-DSHIELD=${{ matrix.shield }}"
-            ARTIFACT_NAME="${{ matrix.shield }}-${{ matrix.board }}-zmk"
-          else
-            SHIELD_ARG=
-            ARTIFACT_NAME="${{ matrix.board }}-zmk"
+            ARTIFACT_NAME="${ARTIFACT_NAME}-${{ matrix.shield }}"
           fi
+
+          if [ -n "${{ matrix.keymap }}" ]; then
+            SHIELD_ARG="${SHIELD_ARG} -DKEYMAP_FILE=${GITHUB_WORKSPACE}/${{ matrix.keymap }}"
+          fi
+
+          ARTIFACT_NAME="${ARTIFACT_NAME}-zmk"
 
           echo ::set-output name=shield-arg::${SHIELD_ARG}
           echo ::set-output name=artifact-name::${ARTIFACT_NAME}
 
+
       - name: Build debug images (west build)
-        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
+        run: west build -s zmk/app -p -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
           -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_USB_LOGGING=y
       - name: Generated DTS file
         if: always()
-        run: cat -n build/zephyr/nrfmicro.dts.pre.tmp
+        run: cat -n build/zephyr/*.dts.pre.tmp
       - name: Generated zephyr DTS file
         if: always()
         run: cat -n build/zephyr/zephyr.dts
@@ -88,8 +99,9 @@ jobs:
             build/zephyr/zmk.uf2
         continue-on-error: true
 
+
       - name: Build release images (west build)
-        run: west build -s zmk/app -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
+        run: west build -s zmk/app -p -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
           -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
