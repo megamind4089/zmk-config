@@ -71,14 +71,14 @@
 // Settings layer to change keyboard behaviour
 // ------------------------------------------------------------------------------------------
 // | EXIT|BOOTL| RST | USB | BLE | NON | NON | NON | NON | NON | NON | NON | NON | NON |NON |
-// | NON  |BTCLR| BT0 | BT1 | BT2 | BT3 | BT4 | NON | NON | NON | NON | NON | NON |   NON   |
+// | BTCLR|BT0  | BT1 | BT2 | BT3 | BT4 | NON | NON | NON | NON | NON | NON | NON |   NON   |
 // |  NON  | TOG0| TOG1| TOG2| TOG3| NON | NON | NON | NON | NON | NON | NON | NON |  NON   |
 // |  NON | NON |NON| NON | NON | NON | NON | NON | NON | NON | NON | NON |    NON    | NON |
 // |   NON  |  NON   |  NON   |   NON  | NON |    NON       |  NON  |  NON  |  NON  |  NON  |
 // | Rotary | (<-- Rotary switch) -----------------------------------------------------------
 				bindings = <
 	&tog SETTINGS		&bootloader 	&reset			&none			&none	&none 	&none 	&none 		&none	&none	&none			&none			&none  			&none			&none
-	&none 	&bt BT_CLR  &bt BT_SEL 0  	&bt BT_SEL 1   	&bt BT_SEL 2	&bt BT_SEL 3   	&bt BT_SEL 4   		&none	&none   &none			&none   		&none			&none			&none
+	&bt BT_CLR  &bt BT_SEL 0  	&bt BT_SEL 1   	&bt BT_SEL 2	&bt BT_SEL 3   	&bt BT_SEL 4    &none  		&none	&none   &none			&none   		&none			&none			&none
 	&none	&tog 0   	&tog 1   		&tog 2   		&tog SETTINGS   &none   		&none   			&none   &none	&none   		&none			&none			&none   		&none
 	&none	&none		&rgb_ug RGB_TOG &rgb_ug RGB_BRD	&rgb_ug RGB_BRI &rgb_ug RGB_EFR &rgb_ug  RGB_EFF	&rgb_ug RGB_HUD	&rgb_ug RGB_HUI	&rgb_ug RGB_SAD	&rgb_ug RGB_SAI	&rgb_ug RGB_SPD	&rgb_ug RGB_SPI	&rgb_ug RGB_COLOR_HSB(128,100,100)
 	&none	&none    	&none							&none			&none			&none  			&none			&none 	&none	&none
@@ -89,7 +89,7 @@
 		fn_layer {
 // Function layer
 // ------------------------------------------------------------------------------------------
-// | BOOT |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |INS | RST|
+// | BOOT |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |INS |SETT|
 // | TAB  |BTPRV|  UP |BTNXT| TOG0| TOG1| TOG2| BT3 | BT4 | PRNT| SLCKL | UP  | LOCK |  DEL |
 // | CAPS  |LEFT |DOWN |RIGHT|MUTE |  G  |  *  |  /  | HOME| PGUP| LEFT|RIGHT|none|  ENTER  |
 // | SHIFT |none|PRV|PLAYP|NEXT | VOLD| VOLU|  +  |  -  | END | PGDN| DOWN|    Shift   | FN |
