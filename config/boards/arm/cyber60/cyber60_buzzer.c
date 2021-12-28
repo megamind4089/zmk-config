@@ -50,19 +50,17 @@ void _play(const struct device *pwm, uint32_t period)
 
 void play_sound_1(const struct device *pwm)
 {
-    _play(pwm, 1000);
-    _play(pwm, 500);
-    _play(pwm, 250);
-    _play(pwm, 100);
-    _play(pwm, 50);
+    _play(pwm, 1500);
+    _play(pwm, 3900);
+    _play(pwm, 1500);
 }
 
 void play_sound_2(const struct device *pwm)
 {
-    _play(pwm, 1500);
-    _play(pwm, 3900);
-    _play(pwm, 1500);
-    _play(pwm, 1500);
+    _play(pwm, 1000);
+    _play(pwm, 500);
+    _play(pwm, 250);
+    _play(pwm, 50);
 }
 
 void play_sound_3(const struct device *pwm)
