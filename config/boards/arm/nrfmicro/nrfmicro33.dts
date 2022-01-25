@@ -1,0 +1,152 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+/dts-v1/;
+#include <nordic/nrf52833_qiaa.dtsi>
+#include "arduino_pro_micro_pins.dtsi"
+
+/ {
+	model = "nrfmicro";
+	compatible = "joric,nrfmicro";
+
+	chosen {
+		zephyr,code-partition = &code_partition;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		blue_led: led_0 {
+			gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+			label = "Blue LED";
+		};
+	};
+
+	ext-power {
+		compatible = "zmk,ext-power-generic";
+		label = "EXT_POWER";
+		control-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;
+	};
+
+	vbatt {
+		compatible = "zmk,battery-voltage-divider";
+		label = "BATTERY";
+		io-channels = <&adc 2>;
+		output-ohms = <2000000>;
+		full-ohms = <(2000000 + 820000)>;
+	};
+};
+
+&adc {
+	status = "okay";
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&i2c0 {
+	compatible = "nordic,nrf-twi";
+	sda-pin = <15>;
+	scl-pin = <17>;
+};
+
+&uart0 {
+	compatible = "nordic,nrf-uarte";
+	tx-pin = <6>;
+	rx-pin = <8>;
+};
+
+&usbd {
+	status = "okay";
+};
+
+
+&flash0 {
+	/*
+	 * For more information, see:
+	 * http://docs.zephyrproject.org/latest/devices/dts/flash_partitions.html
+	 */
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		sd_partition: partition@0 {
+			label = "softdevice";
+			reg = <0x00000000 0x00026000>;
+		};
+		code_partition: partition@26000 {
+			label = "code_partition";
+			reg = <0x00026000 0x00046000>;
+		};
+
+		/*
+		 * The flash starting at 0x0006c000 and ending at
+		 * 0x00073fff is reserved for use by the application.
+		 */
+
+		/*
+		 * Storage partition will be used by FCB/LittleFS/NVS
+		 * if enabled.
+		 */
+		storage_partition: partition@6c000 {
+			label = "storage";
+			reg = <0x0006c000 0x00008000>;
+		};
+
+		boot_partition: partition@74000 {
+			label = "adafruit_boot";
+			reg = <0x00074000 0x0000c000>;
+		};
+	};
+};
+
+&pro_micro {
+	gpio-map
+		= <0 0 &gpio0 8 0>		/* D0 */
+		, <1 0 &gpio0 6 0>		/* D1 */
+		, <2 0 &gpio0 15 0>		/* D2 */
+		, <3 0 &gpio0 17 0>		/* D3 */
+		, <4 0 &gpio0 20 0>		/* D4/A6 */
+		, <5 0 &gpio0 13 0>		/* D5 */
+		, <6 0 &gpio0 24 0>		/* D6/A7 */
+		, <7 0 &gpio0 9 0>		/* D7 */
+		, <8 0 &gpio0 10 0>		/* D8/A8 */
+		, <9 0 &gpio1 6 0>		/* D9/A9 */
+		, <10 0 &gpio1 4 0>	/* D10/A10 */
+		, <16 0 &gpio0 28 0>	/* D16 */
+		, <14 0 &gpio0 3 0>	/* D14 */
+		, <15 0 &gpio1 5 0>	/* D15 */
+		, <18 0 &gpio0 2 0>	/* D18/A0 */
+		, <19 0 &gpio0 29 0>	/* D19/A1 */
+		, <20 0 &gpio0 31 0>	/* D20/A2 */
+		, <21 0 &gpio0 30 0>	/* D21/A3 */
+		;
+};
+
+&pro_micro_a {
+	gpio-map
+		= <0 0 &gpio0 2 0>	/* D18/A0 */
+		, <1 0 &gpio0 29 0>	/* D19/A1 */
+		, <2 0 &gpio0 31 0>	/* D20/A2 */
+		, <3 0 &gpio0 30 0>	/* D21/A3 */
+		, <6 0 &gpio0 20 0>	/* D4/A6 */
+		, <7 0 &gpio0 24 0>	/* D6/A7 */
+		, <8 0 &gpio0 10 0>	/* D8/A8 */
+		, <9 0 &gpio1 6 0>	/* D9/A9 */
+		, <10 0 &gpio1 4 0>	/* D10/A10 */
+		;
+};

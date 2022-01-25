@@ -3,10 +3,17 @@
 # Copyright (c) 2020 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
-if BOARD_NRFMICRO
+if (BOARD_NRFMICRO || BOARD_NRFMICRO33)
 
+if BOARD_NRFMICRO
 config BOARD
 	default "nrfmicro"
+endif
+
+if BOARD_NRFMICRO33
+config BOARD
+	default "nrfmicro33"
+endif
 
 if USB
 
@@ -33,11 +40,7 @@ config PINMUX
 config ZMK_BATTERY_VOLTAGE_DIVIDER
 	default y
 
-if (BOARD_NRFMICRO_1_3_0 || BOARD_NRFMICRO_1_4_0)
-
 config BOARD_NRFMICRO_CHARGER
 	default y
 
-endif # BOARD_NRFMICRO_1_3_0
-
-endif # BOARD_NRFMICRO
+endif # BOARD_NRFMICRO || BOARD_NRFMICRO33
