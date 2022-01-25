@@ -86,22 +86,12 @@
 
 		sd_partition: partition@0 {
 			label = "softdevice";
-			reg = <0x00000000 0x00026000>;
+			reg = <0x00000000 0x00001000>;
 		};
-		code_partition: partition@26000 {
+		code_partition: partition@1000 {
 			label = "code_partition";
-			reg = <0x00026000 0x00046000>;
+			reg = <0x00001000 0x0006b000>;
 		};
-
-		/*
-		 * The flash starting at 0x0006c000 and ending at
-		 * 0x00073fff is reserved for use by the application.
-		 */
-
-		/*
-		 * Storage partition will be used by FCB/LittleFS/NVS
-		 * if enabled.
-		 */
 		storage_partition: partition@6c000 {
 			label = "storage";
 			reg = <0x0006c000 0x00008000>;
