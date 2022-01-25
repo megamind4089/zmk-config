@@ -6,11 +6,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker.io/zmkfirmware/zmk-build-arm:2.5
+      image: zmkfirmware/zmk-build-arm:2.5
     strategy:
       fail-fast: false
       matrix:
         include:
+
+          - shield: lily58_left
+            board: nrfmicro33@1.4.0
+          - shield: lily58_right
+            board: nrfmicro33@1.4.0
+          - shield: sofle_left
+            board: nrfmicro33@1.4.0
+          - shield: sofle_right
+            board: nrfmicro33@1.4.0
+
           - shield: lily58_left
             board: nrfmicro@1.4.0
           - shield: lily58_right
@@ -18,10 +28,12 @@ jobs:
           - shield: sofle_left
             board: nrfmicro@1.4.0
           - shield: sofle_right
+
             board: nrfmicro@1.4.0
           - shield: sofle_left
             board: nrfmicro@1.4.1
           - shield: sofle_right
+
             board: nrfmicro@1.4.1
           - board: cyber60@B
             keymap: config/boards/arm/cyber60/cyber60.keymap
