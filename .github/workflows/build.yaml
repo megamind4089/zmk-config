@@ -28,13 +28,8 @@ jobs:
           - shield: sofle_left
             board: nrfmicro@1.4.0
           - shield: sofle_right
-
             board: nrfmicro@1.4.0
-          - shield: sofle_left
-            board: nrfmicro@1.4.1
-          - shield: sofle_right
 
-            board: nrfmicro@1.4.1
           - board: cyber60@B
             keymap: config/boards/arm/cyber60/cyber60.keymap
 
