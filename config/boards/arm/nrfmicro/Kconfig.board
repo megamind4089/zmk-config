@@ -20,3 +20,7 @@ config BOARD_NRFMICRO33
 	bool "nrfmicro33"
 	depends on SOC_NRF52833_QIAA
 
+config BOARD_NRFMICRO33_1_4_0
+	bool "nrfmicro33_1_4_0"
+	depends on BOARD_NRFMICRO33
+
