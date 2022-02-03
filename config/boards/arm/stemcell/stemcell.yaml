@@ -1,0 +1,19 @@
+identifier: stemcell
+name: STeMCell
+type: mcu
+arch: arm
+toolchain:
+  - zephyr
+  - gnuarmemb
+  - xtools
+ram: 64
+flash: 256
+supported:
+  - gpio
+  - i2c
+  - counter
+  - spi
+  - usb_device
+  - can
+  - pwm
+  - nvs

@@ -1,0 +1,9 @@
+file_format: "1"
+id: stemcell
+name: STeMCell
+type: board
+arch: arm
+outputs:
+  - usb
+url: https://github.com/megamind4089/stemcell
+exposes: [pro_micro]

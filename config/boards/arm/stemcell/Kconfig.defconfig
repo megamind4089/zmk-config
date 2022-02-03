@@ -1,0 +1,20 @@
+# STeMCell board configuration
+
+# Copyright (c) 2021 Mega Mind
+# SPDX-License-Identifier: MIT
+
+if BOARD_STEMCELL
+
+config BOARD
+	default "stemcell"
+
+config ZMK_USB
+	default y
+
+config SERIAL
+	default y
+
+config UART_ASYNC_API
+	default y
+
+endif # BOARD_STEMCELL

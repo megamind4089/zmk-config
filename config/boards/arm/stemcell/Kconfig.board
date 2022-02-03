@@ -1,0 +1,8 @@
+# STeMCell board configuration
+
+# Copyright (c) 2021 Mega Mind
+# SPDX-License-Identifier: MIT
+
+config BOARD_STEMCELL
+	bool "STeMCell"
+	depends on SOC_STM32F401XC
