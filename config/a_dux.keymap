@@ -142,9 +142,9 @@
 
         base_layer {
             bindings = <
-              &kp Q        &kp W      &kp F       &kp P       &kp B             &kp J &kp L       &kp U       &kp Y        &kp SQT
-              &hm LGUI A   &hm LALT R &hm LCTRL S &hm LSHFT T &kp G             &kp M &hm LSHFT N &hm LCTRL E &hm LALT I   &hm LGUI O
-              &lt BUTTON Z &hm RALT X &kp C       &kp D       &kp V             &kp K &kp H       &kp COMMA   &hm RALT DOT &lt BUTTON SLASH
+              &kp Q        &kp W      &kp E       &kp R       &kp T             &kp Y &kp U       &kp I       &kp O        &kp P
+              &hm LGUI A   &hm LALT S &hm LCTRL D &hm LSHFT F &kp G             &kp H &hm LSHFT J &hm LCTRL K &hm LALT L   &hm LGUI SQT
+              &lt BUTTON Z &hm RALT X &kp C       &kp V       &kp B             &kp N &kp M       &kp COMMA   &hm RALT DOT &lt BUTTON SLASH
                                           &lt NAV SPC &lt MOUSE TAB             &lt SYM RET &lt NUM BSPC
                 >;
         };
@@ -202,6 +202,22 @@
               &kp F11     &kp F4     &kp F5     &kp F6     &kp SLCK     U_NA     &kp LSHFT     &kp LCTRL     &kp LALT     &kp LGUI
               &kp F10     &kp F1     &kp F2     &kp F3     &kp PAUSE_BREAK     U_NA     U_NA     U_NA     &kp RALT     U_NA
                                               &kp SPC     &kp TAB     U_NA     U_NA
+                >;
+        };
+        qwerty_layer {
+            bindings = <
+              &kp Q        &kp W      &kp E       &kp R       &kp T             &kp Y &kp U       &kp I       &kp O        &kp P
+              &hm LGUI A   &hm LALT S &hm LCTRL D &hm LSHFT F &kp G             &kp H &hm LSHFT J &hm LCTRL K &hm LALT L   &hm LGUI SQT
+              &lt BUTTON Z &hm RALT X &kp C       &kp V       &kp B             &kp N &kp M       &kp COMMA   &hm RALT DOT &lt BUTTON SLASH
+                                          &lt NAV SPC &lt MOUSE TAB             &lt SYM RET &lt NUM BSPC
+                >;
+        };
+        colemak_layer {
+            bindings = <
+              &kp Q        &kp W      &kp F       &kp P       &kp B             &kp J &kp L       &kp U       &kp Y        &kp SQT
+              &hm LGUI A   &hm LALT R &hm LCTRL S &hm LSHFT T &kp G             &kp M &hm LSHFT N &hm LCTRL E &hm LALT I   &hm LGUI O
+              &lt BUTTON Z &hm RALT X &kp C       &kp D       &kp V             &kp K &kp H       &kp COMMA   &hm RALT DOT &lt BUTTON SLASH
+                                          &lt NAV SPC &lt MOUSE TAB             &lt SYM RET &lt NUM BSPC
                 >;
         };
 
