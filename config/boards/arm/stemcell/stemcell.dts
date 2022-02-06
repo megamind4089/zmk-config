@@ -24,11 +24,11 @@
 };
 
 &usart1 {
-	pinctrl-0 = <&usart1_tx_pb6>;
+	pinctrl-0 = <&usart1_tx_pb6 &usart1_tx_pb6>;
 	single-wire;
 	current-speed = <115200>;
-	dmas = <&dma2 2 4 0x480 0x3>;
-	dma-names = "rx";
+	dmas = <&dma2 7 4 0x28440 0x3  &dma2 2 4 0x28480 0x3>;
+	dma-names = "tx", "rx";
 	status = "disabled";
 };
 
