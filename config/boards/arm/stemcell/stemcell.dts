@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Mega Mind
+ * Copyright (c) 2022 Mega Mind
  *
  * SPDX-License-Identifier: MIT
  */
@@ -33,11 +33,11 @@
 };
 
 &usart2 {
-	pinctrl-0 = <&usart2_tx_pa2>;
+	pinctrl-0 = <&usart2_tx_pa2  &usart2_tx_pa2>;
 	single-wire;
 	current-speed = <115200>;
-	dmas = <&dma1 5 4 0x480 0x3>;
-	dma-names = "rx";
+	dmas = <&dma1 6 4 0x28440 0x3  &dma1 5 4 0x28480 0x3>;
+	dma-names = "tx", "rx";
 	status = "disabled";
 };
 
