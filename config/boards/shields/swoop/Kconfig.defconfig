@@ -1,0 +1,73 @@
+if SHIELD_SWOOP_LEFT || SHIELD_SWOOP_RIGHT
+
+config ZMK_SPLIT
+	default y
+
+if SHIELD_SWOOP_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "Swoop"
+
+if ZMK_BLE
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+endif
+
+if ZMK_USB
+choice ZMK_SPLIT_SERIAL_ROLE
+	default ZMK_SPLIT_SERIAL_ROLE_CENTRAL
+endchoice
+endif
+
+#SHIELD_SWOOP_LEFT
+endif
+
+if SHIELD_SWOOP_RIGHT
+
+if ZMK_USB
+choice ZMK_SPLIT_SERIAL_ROLE
+	default ZMK_SPLIT_SERIAL_ROLE_PERIPHERAL
+endchoice
+endif
+
+#SHIELD_SWOOP_RIGHT
+endif
+
+if ZMK_DISPLAY
+
+config I2C
+	default y
+
+config SSD1306
+	default y
+
+config SSD1306_REVERSE_MODE
+	default y
+
+endif # ZMK_DISPLAY
+
+if LVGL
+
+config LVGL_HOR_RES_MAX
+	default 128
+
+config LVGL_VER_RES_MAX
+	default 32
+
+config LVGL_VDB_SIZE
+	default 64
+
+config LVGL_DPI
+	default 148
+
+config LVGL_BITS_PER_PIXEL
+	default 1
+
+choice LVGL_COLOR_DEPTH
+	default LVGL_COLOR_DEPTH_1
+endchoice
+
+endif # LVGL
+
+# SHIELD_SWOOP_RIGHT || SHIELD_SWOOP_LEFT
+endif

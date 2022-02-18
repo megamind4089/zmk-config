@@ -1,0 +1,224 @@
+/*
+ * Copyright (c) 2022 Megamind
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/outputs.h>
+
+
+#define BASE   0
+#define BUTTON 1
+#define NAV    2
+#define MOUSE  3
+#define MEDIA  4
+#define NUM    5
+#define SYM    6
+#define FUN    7
+
+#define U_TAPPING_TERM 200
+
+#define U_NP &none // key is not present
+#define U_NA &none // present but not available for use
+#define U_NU &none // available but not used
+
+#define U_BTN1 &kp KP_N5
+#define U_BTN2 U_NU
+#define U_BTN3 U_NU
+#define U_MS_D &kp KP_N2
+#define U_MS_L &kp KP_N4
+#define U_MS_R &kp KP_N6
+#define U_MS_U &kp KP_N8
+#define U_WH_D U_NU
+#define U_WH_L U_NU
+#define U_WH_R U_NU
+#define U_WH_U U_NU
+
+#define U_RDO &kp LC(Y)
+#define U_PST &kp LC(V)
+#define U_CPY &kp LC(C)
+#define U_CUT &kp LC(X)
+#define U_UND &kp LC(Z)
+
+#define MIRYOKU_COMBO_TPSL 31 32
+#define MIRYOKU_COMBO_TPSR 33 34
+
+&mt {
+    // flavor = "tap-preferred";
+    // tapping_term_ms = <200>;
+};
+
+/ {
+
+    combos {
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <0 1>;
+            bindings = <&kp ESC>;
+        };
+
+        combo_tab {
+            timeout-ms = <50>;
+            key-positions = <10 11>;
+            bindings = <&kp TAB>;
+        };
+
+        combo_lgui {
+            timeout-ms = <50>;
+            key-positions = <12 13>;
+            bindings = <&kp LGUI>;
+        };
+
+
+        combo_rgui {
+            timeout-ms = <50>;
+            key-positions = <17 18>;
+            bindings = <&kp RGUI>;
+        };
+
+
+        combo_tpsl_BASE {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSL>;
+          bindings = <&lt MEDIA ESC>;
+          layers = <BASE>;
+        };
+        combo_tpsl_NUM {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSL>;
+          bindings = <&kp DOT>;
+          layers = <NUM>;
+        };
+        combo_tpsl_SYM {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSL>;
+          bindings = <&kp LPAR>;
+          layers = <SYM>;
+        };
+        combo_tpsl_FUN {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSL>;
+          bindings = <&kp K_APP>;
+          layers = <FUN>;
+        };
+        combo_tpsr_BASE {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSR>;
+          bindings = <&lt FUN DEL>;
+          layers = <BASE>;
+        };
+        combo_tpsr_BUTTON {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSR>;
+          bindings = <U_BTN2>;
+          layers = <BUTTON>;
+        };
+        combo_tpsr_NAV {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSR>;
+          bindings = <&kp DEL>;
+          layers = <NAV>;
+        };
+        combo_tpsr_MOUSE {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSR>;
+          bindings = <U_BTN2>;
+          layers = <MOUSE>;
+        };
+        combo_tpsr_MEDIA {
+          timeout-ms = <200>;
+          key-positions = <MIRYOKU_COMBO_TPSR>;
+          bindings = <&kp K_MUTE>;
+          layers = <MEDIA>;
+        };
+
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            bindings = <
+              &kp Q        &kp W      &kp F       &kp P       &kp B             &kp J &kp L       &kp U       &kp Y        &kp SQT
+              &hm LGUI A   &hm LALT R &hm LCTRL S &hm LSHFT T &kp G             &kp M &hm LSHFT N &hm LCTRL E &hm LALT I   &hm LGUI O
+              &lt BUTTON Z &hm RALT X &kp C       &kp D       &kp V             &kp K &kp H       &kp COMMA   &hm RALT DOT &lt BUTTON SLASH
+                            &lt MEDIA ESC &lt NAV SPC &lt MOUSE TAB             &lt SYM RET &lt NUM BSPC  &lt FUN DEL
+                >;
+        };
+        button_layer {
+            bindings = <
+              U_UND     U_CUT     U_CPY     U_PST     U_RDO      U_RDO    U_PST     U_CPY     U_CUT     U_UND
+              &kp LGUI  &kp LALT  &kp LCTRL &kp LSHFT &none      &none    &kp LSHFT &kp LCTRL &kp LALT  &kp LGUI
+              U_UND     U_CUT     U_CPY     U_PST     U_RDO      U_RDO    U_PST     U_CPY     U_CUT     U_UND
+                                  U_BTN2    U_BTN3    U_BTN1     U_BTN1   U_BTN3    U_BTN2
+                >;
+        };
+        navigation_layer {
+            bindings = <
+              &bootloader  U_NA     U_NA     U_NA     U_NA     U_RDO     U_PST     U_CPY     U_CUT     U_UND
+              &kp LGUI     &kp LALT     &kp LCTRL     &kp LSHFT     U_NA     &kp LEFT     &kp DOWN     &kp UP     &kp RIGHT     &kp CAPS
+              U_NA         &kp RALT     U_NA     U_NA     U_NA     &kp HOME     &kp PG_DN     &kp PG_UP     &kp END     &kp INS
+                                                  U_NA     U_NA     U_NA     &kp RET     &kp BSPC     &kp DEL
+                >;
+        };
+        mouse_layer {
+            bindings = <
+              &bootloader     U_NA     U_NA     U_NA     U_NA     U_RDO     U_PST     U_CPY     U_CUT     U_UND
+              &kp LGUI     &kp LALT     &kp LCTRL     &kp LSHFT     U_NA     U_MS_L     U_MS_D     U_MS_U     U_MS_R     U_NU
+              U_NA     &kp RALT     U_NA     U_NA     U_NA     U_WH_L     U_WH_D     U_WH_U     U_WH_R     U_NU
+                                    U_NA     U_NA     U_NA     U_BTN1     U_BTN3     U_BTN2
+                >;
+        };
+        media_layer {
+            bindings = <
+              &bootloader     U_NA     U_NA     U_NA     U_NA     &rgb_ug RGB_TOG     &rgb_ug RGB_EFF     &rgb_ug RGB_HUI     &rgb_ug RGB_SAI     &rgb_ug RGB_BRI
+              &kp LGUI     &kp LALT     &kp LCTRL     &kp LSHFT     U_NA     &kp C_PREV     &kp C_VOL_DN     &kp C_VOL_UP     &kp C_NEXT     &out OUT_TOG
+              U_NA     &kp RALT     U_NA     U_NA     U_NA     &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_CLR
+                                             U_NA     U_NA     U_NA     &kp C_STOP     &kp C_PP     &kp C_MUTE
+                >;
+        };
+        number_layer {
+            bindings = <
+              &kp LBKT     &kp NUM_7     &kp NUM_8     &kp NUM_9     &kp RBKT     U_NA     U_NA     U_NA     U_NA     &bootloader
+              &kp SEMI     &kp NUM_4     &kp NUM_5     &kp NUM_6     &kp EQL     U_NA     &kp LSHFT     &kp LCTRL     &kp LALT     &kp LGUI
+              &kp GRAVE     &kp NUM_1     &kp NUM_2     &kp NUM_3     &kp BSLH     U_NA     U_NA     U_NA     &kp RALT     U_NA
+                                &kp DOT     &kp NUM_0     &kp MINUS     U_NA     U_NA     U_NA
+                >;
+        };
+        symbol_layer {
+            bindings = <
+              &kp LBRC     &kp AMPS     &kp ASTRK     &kp LPAR   &kp RBRC     U_NA     U_NA     U_NA     U_NA     &bootloader
+              &kp COLON     &kp DLLR     &kp PRCT     &kp CRRT   &kp PLUS     U_NA     &kp LSHFT     &kp LCTRL     &kp LALT     &kp LGUI
+              &kp TILDE     &kp EXCL     &kp AT     &kp HASH     &kp PIPE     U_NA     U_NA     U_NA     &kp RALT     U_NA
+                                          &kp LPAR     &kp RPAR     &kp UNDER     U_NA     U_NA     U_NA
+                >;
+        };
+        function_layer {
+            bindings = <
+              &kp F12     &kp F7     &kp F8     &kp F9     &kp PSCRN     U_NA     U_NA     U_NA     U_NA     &bootloader
+              &kp F11     &kp F4     &kp F5     &kp F6     &kp SLCK     U_NA     &kp LSHFT     &kp LCTRL     &kp LALT     &kp LGUI
+              &kp F10     &kp F1     &kp F2     &kp F3     &kp PAUSE_BREAK     U_NA     U_NA     U_NA     &kp RALT     U_NA
+                                &kp K_APP     &kp SPC     &kp TAB     U_NA     U_NA     U_NA
+                >;
+        };
+
+    };
+};
+
+/ {
+  behaviors {
+    hm: homerow_mods {
+      compatible = "zmk,behavior-hold-tap";
+      label = "HOMEROW_MODS";
+      #binding-cells = <2>;
+      tapping_term_ms = <U_TAPPING_TERM>;
+      flavor = "tap-preferred";
+      bindings = <&kp>, <&kp>;
+    };
+  };
+};

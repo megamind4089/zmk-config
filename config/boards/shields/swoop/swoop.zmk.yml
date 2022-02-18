@@ -1,0 +1,14 @@
+file_format: "1"
+id: swoop
+name: Swoop
+type: shield
+url: https://github.com/jimmerricks/swoop/
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - underglow
+siblings:
+  - swoop_left
+  - swoop_right

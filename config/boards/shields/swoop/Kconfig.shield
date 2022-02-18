@@ -1,0 +1,8 @@
+# Copyright (c) 2022 Megamind
+# SPDX-License-Identifier: MIT
+
+config SHIELD_SWOOP_LEFT
+	def_bool $(shields_list_contains,swoop_left)
+
+config SHIELD_SWOOP_RIGHT
+	def_bool $(shields_list_contains,swoop_right)
