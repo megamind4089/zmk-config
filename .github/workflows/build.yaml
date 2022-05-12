@@ -84,9 +84,6 @@ jobs:
       - name: Build debug images (west build)
         run: west build -s zmk/app -p -b ${{ matrix.board }} -- ${{ steps.variables.outputs.shield-arg }}
           -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_USB_LOGGING=y
-      - name: Generated DTS file
-        if: always()
-        run: cat -n build/zephyr/*.dts.pre.tmp
       - name: Generated zephyr DTS file
         if: always()
         run: cat -n build/zephyr/zephyr.dts
