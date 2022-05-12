@@ -8,6 +8,8 @@
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/led/led.h>
+
 / {
     model = "CYBER60";
     compatible = "cyber60";
@@ -23,7 +25,7 @@
 
     vbatt {
         compatible = "zmk,battery-voltage-divider";
-        label = "BATTERY";
+        label = "VOLTAGE_DIVIDER";
         io-channels = <&adc 1>;
         output-ohms = <2000000>;
         full-ohms = <(1000000 + 2000000)>;
@@ -162,6 +164,9 @@
         chain-length = <16>; /* number of LEDs */
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
+        color-mapping = <LED_COLOR_ID_GREEN
+                        LED_COLOR_ID_RED
+                        LED_COLOR_ID_BLUE>;
     };
 };
 
