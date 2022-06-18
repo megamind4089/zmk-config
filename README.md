@@ -14,5 +14,7 @@ nRFMicro board
 - 1.4.0: https://github.com/joric/nrfmicro/wiki/Releases#nrfmicro-14
 - 1.4.1: 1.4.0 board with I2C pins 15 and 20 (instead of 15 and 17)
 
+- 1.4.0: nrfMicro with 52833 chip
+
 cyber60 board:
 - B: https://github.com/4pplet/cyber60
