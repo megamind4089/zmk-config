@@ -1,17 +1,17 @@
 include:
 
-  - shield: lily58_left
+  - shield: lily_left
     board: nrfmicro33@1.4.0
-  - shield: lily58_right
+  - shield: lily_right
     board: nrfmicro33@1.4.0
   - shield: sofle_left
     board: nrfmicro33@1.4.0
   - shield: sofle_right
     board: nrfmicro33@1.4.0
 
-  - shield: lily58_left
+  - shield: lily_left
     board: nrfmicro@1.4.0
-  - shield: lily58_right
+  - shield: lily_right
     board: nrfmicro@1.4.0
   - shield: sofle_left
     board: nrfmicro@1.4.0
